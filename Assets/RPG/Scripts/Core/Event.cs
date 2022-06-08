@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 
-namespace RPGM.Core
+namespace KnightAge.Core
 {
     /// <summary>
     /// An event allows execution of some logic to be deferred for a period of time.

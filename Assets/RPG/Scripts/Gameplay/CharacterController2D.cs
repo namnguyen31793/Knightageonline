@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// A simple controller for animating a 4 directional sprite using Physics.

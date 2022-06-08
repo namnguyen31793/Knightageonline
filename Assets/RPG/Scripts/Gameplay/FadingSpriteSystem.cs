@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// A system for batch animation of fading sprites.

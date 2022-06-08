@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// A simple camera follower class. It saves the offset from the
@@ -21,7 +21,7 @@ namespace RPGM.Gameplay
             offset = focus.position - transform.position;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             transform.position = Vector3.Lerp(transform.position, focus.position - offset, Time.deltaTime * smoothTime);
         }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
 
     [RequireComponent(typeof(AudioSource))]

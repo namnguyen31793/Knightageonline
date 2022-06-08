@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
 
     [CustomPropertyDrawer(typeof(Cutscene.CutsceneEvent))]

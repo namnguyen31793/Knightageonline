@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
     public class MessageBar : MonoBehaviour
     {

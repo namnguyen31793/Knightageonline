@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using KnightAge;
-using RPGM.Core;
-using RPGM.Gameplay;
-using RPGM.UI;
+using KnightAge.Core;
+using KnightAge.Gameplay;
+using KnightAge.UI;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// This class provides all the data you need to control and change gameplay.
@@ -20,7 +20,8 @@ namespace RPGM.Gameplay
         public InputController input;
         public InventoryController inventoryController;
         public MusicController musicController;
-        public GameLogic gameLogic;
+        public CampControl campEnemyControl;
+        public PoolControl poolControl;
 
         Dictionary<GameObject, HashSet<string>> conversations = new Dictionary<GameObject, HashSet<string>>();
 

@@ -1,7 +1,7 @@
-using RPGM.Core;
+using KnightAge.Core;
 using UnityEngine;
 
-namespace RPGM.Events
+namespace KnightAge.Events
 {
     public class StopTalking : Event<StopTalking>
     {

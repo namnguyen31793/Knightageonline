@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     public class MusicController : MonoBehaviour
     {

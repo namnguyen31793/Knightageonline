@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
 
     // [CustomPropertyDrawer(typeof(ConversationPiece))]

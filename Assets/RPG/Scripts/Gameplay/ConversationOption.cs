@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// A choice in a conversation script.

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
 
     [ExecuteInEditMode]

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 using UnityEditor;
 using UnityEngine;
 
-namespace RPGM.EditorExtensions
+namespace KnightAge.EditorExtensions
 {
     public class StoryItemSearchDialog : ScriptableWizard
     {

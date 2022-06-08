@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// A single dialog of text and  options in a conversation script.

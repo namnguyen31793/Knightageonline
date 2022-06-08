@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPGM.Core
+namespace KnightAge.Core
 {
     /// <summary>
     /// Monobehavioids which inherit this class will be tracked in the static 

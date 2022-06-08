@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 using UnityEditor;
 using UnityEngine;
 
-namespace RPGM.EditorExtensions
+namespace KnightAge.EditorExtensions
 {
 
     public class MechanicsGizmos

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace RPGM.Core
+namespace KnightAge.Core
 {
 
     /// <summary>

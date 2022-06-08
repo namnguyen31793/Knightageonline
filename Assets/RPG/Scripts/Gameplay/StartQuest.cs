@@ -1,7 +1,7 @@
-using RPGM.Core;
-using RPGM.Gameplay;
+using KnightAge.Core;
+using KnightAge.Gameplay;
 
-namespace RPGM.Events
+namespace KnightAge.Events
 {
     /// <summary>
     /// This event will start a quest (which is attached to an NPC).

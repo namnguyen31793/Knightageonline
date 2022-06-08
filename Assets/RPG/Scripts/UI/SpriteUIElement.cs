@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
     [ExecuteInEditMode]
     public class SpriteUIElement : MonoBehaviour

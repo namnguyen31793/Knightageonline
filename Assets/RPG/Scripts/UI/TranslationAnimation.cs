@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
     public class TranslationAnimation : MonoBehaviour
     {
@@ -28,7 +28,7 @@ namespace RPGM.UI
             origin = transform.position;
         }
 
-        void Update()
+        void FixedUpdate()
         {
 
             switch (state)

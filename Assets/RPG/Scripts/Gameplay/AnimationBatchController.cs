@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace RPGM.Mechanics
+namespace KnightAge.Mechanics
 {
 
     public class AnimationBatchController : MonoBehaviour

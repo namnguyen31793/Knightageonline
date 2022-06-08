@@ -5,9 +5,9 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEditor.SceneManagement;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
 
     public class ConversationPieceDialog : ScriptableWizard

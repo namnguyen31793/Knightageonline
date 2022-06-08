@@ -6,37 +6,78 @@ namespace KnightAge
 {
     public class Enemy : MonoBehaviour
     {
-        public float _speed;
-        public float _rangleActack;
-        public ENEMY_TYPE_ACTACK _typeActack = ENEMY_TYPE_ACTACK.MELEE;
+        [SerializeField]
+        private float _speed;
+        [SerializeField]
+        private float _rangleActack;
+        [SerializeField]
+        private ENEMY_TYPE_ACTACK _typeActack = ENEMY_TYPE_ACTACK.MELEE;
+        [SerializeField]
+        private ENEMY_STATUS _status = ENEMY_STATUS.IDLE;
         private Transform target;
+        [SerializeField]
+        private int CampId;
+
+        private Vector3 _startPos;
+
+        public void Init(int CampId) {
+            this.CampId = CampId;
+        }
 
         /// <summary>
-        /// Action move
+        /// Add time by Frame
         /// </summary>
-        public virtual void Move(float deltaTime){
-            if(target == null)
-                return;
-            if(_typeActack == ENEMY_TYPE_ACTACK.MELEE){
-                MoveMelee(deltaTime);
-            }else if(_typeActack == ENEMY_TYPE_ACTACK.RANGLE){
-                MoveRangle(deltaTime);
-            }
+        public void CheckTime(float deltaTime){
+            if(_status == ENEMY_STATUS.IDLE)
+                MoveIdle(deltaTime);
+            if (_status == ENEMY_STATUS.MOVE)
+                Move(deltaTime);
+            if (_status == ENEMY_STATUS.ACTACK)
+                Actack(deltaTime);
+            if (_status == ENEMY_STATUS.ACTACK)
+                Stun(deltaTime);
         }
 
-        private void MoveMelee(float deltaTime){
-            float step = _speed * deltaTime;
-            this.transform.position = Vector2.MoveTowards(transform.position, target.position, step);
-        }
+        public virtual void MoveIdle(float deltaTime)
+        {
 
-        private void MoveRangle(float deltaTime){
-            float step = _speed * deltaTime;
-            this.transform.position = Vector2.MoveTowards(transform.position, target.position, step);
-            //check distance actack
         }
 
         /// <summary>
-        /// Add Target Actack
+        /// Action Move Enemy
+        /// </summary>
+        public virtual void Move(float deltaTime)
+        {
+            if (target == null)
+                return;
+            float step = _speed * deltaTime;
+            this.transform.position = Vector2.MoveTowards(transform.position, target.position, step);
+            //check distance actack or idle
+            //--------------
+        }
+
+        /// <summary>
+        /// Action Enemy Actack
+        /// </summary>
+        public virtual void Actack(float deltaTime)
+        {
+            if (target == null)
+                return;
+            //check time next turn actack
+        }
+
+        /// <summary>
+        /// Action Enemy Actack
+        /// </summary>
+        public virtual void Stun(float deltaTime)
+        {
+            if (target == null)
+                return;
+            //check time Change Status, if target far clear and move to start pos
+        }
+
+        /// <summary>
+        /// Add Target enemy forward
         /// </summary>
         public virtual void AddTarget(Transform targetActack){
             if(target == null)
@@ -44,11 +85,13 @@ namespace KnightAge
             this.target = targetActack;
         }
 
-        /// <summary>
-        /// Add Target Actack
-        /// </summary>
         public virtual void ClearTarget(){
             this.target = null;
+        }
+
+
+        public virtual void Dispose() {
+            target = null;
         }
 
     }
@@ -57,5 +100,13 @@ namespace KnightAge
     {
         MELEE = 0,
         RANGLE = 1,
+    }
+
+    public enum ENEMY_STATUS
+    {
+        IDLE = 0,
+        MOVE = 1,
+        ACTACK = 2,
+        STUN = 3,
     }
 }

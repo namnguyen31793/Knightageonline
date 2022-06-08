@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace RPGM.Core
+namespace KnightAge.Core
 {
     /// <summary>
     /// The Schedule class implements the discrete event simulator pattern.

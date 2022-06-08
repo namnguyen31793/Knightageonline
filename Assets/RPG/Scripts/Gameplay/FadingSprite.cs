@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using RPGM.Core;
+using KnightAge.Core;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// Marks a sprite that should fade away when the player character enters it's trigger.

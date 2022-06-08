@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using RPGM.Core;
-using RPGM.Gameplay;
-using RPGM.UI;
+using KnightAge.Core;
+using KnightAge.Gameplay;
+using KnightAge.UI;
 using UnityEngine;
 
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// This class will trigger a text message when the player enters the trigger,

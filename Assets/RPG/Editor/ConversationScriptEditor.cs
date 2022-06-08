@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RPGM.EditorExtensions;
+using KnightAge.EditorExtensions;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     [CustomEditor(typeof(ConversationScript), true)]
     public class ConversationScriptEditor : Editor

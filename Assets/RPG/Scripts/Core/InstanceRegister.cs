@@ -1,4 +1,4 @@
-﻿namespace RPGM.Core
+﻿namespace KnightAge.Core
 {
     /// <summary>
     /// A static class which maps a type to a single instance.

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RPGM.Core;
-using RPGM.UI;
+using KnightAge.Core;
+using KnightAge.UI;
 using TMPro;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     [RequireComponent(typeof(AudioSource))]
     [ExecuteInEditMode]

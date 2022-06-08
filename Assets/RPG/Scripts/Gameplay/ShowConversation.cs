@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using RPGM.Core;
-using RPGM.Gameplay;
-using RPGM.UI;
+using KnightAge.Core;
+using KnightAge.Gameplay;
+using KnightAge.UI;
 using UnityEngine;
 
-namespace RPGM.Events
+namespace KnightAge.Events
 {
     /// <summary>
     /// This event will start a conversation with an NPC using a conversation script.

@@ -1,9 +1,9 @@
 using System;
-using RPGM.Core;
-using RPGM.Gameplay;
+using KnightAge.Core;
+using KnightAge.Gameplay;
 using UnityEngine;
 
-namespace RPGM.UI
+namespace KnightAge.UI
 {
     /// <summary>
     /// Sends user input to the correct control systems.

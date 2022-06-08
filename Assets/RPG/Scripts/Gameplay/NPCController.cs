@@ -1,8 +1,8 @@
-using RPGM.Core;
-using RPGM.Gameplay;
+using KnightAge.Core;
+using KnightAge.Gameplay;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// Main class for implementing NPC game objects.

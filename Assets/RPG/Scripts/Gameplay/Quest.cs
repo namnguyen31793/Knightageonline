@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using RPGM.Core;
-using RPGM.UI;
+using KnightAge.Core;
+using KnightAge.UI;
 using UnityEngine;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// This class implements quests.

@@ -4,7 +4,7 @@ using UnityEditor;
 using System.Reflection;
 using System;
 
-namespace RPGM.EditorExtensions
+namespace KnightAge.EditorExtensions
 {
     [InitializeOnLoad]
     public static class SceneContext

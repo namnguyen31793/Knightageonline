@@ -1,8 +1,8 @@
 using UnityEngine;
-using RPGM.Core;
-using RPGM.Gameplay;
+using KnightAge.Core;
+using KnightAge.Gameplay;
 
-namespace RPGM.Gameplay
+namespace KnightAge.Gameplay
 {
     /// <summary>
     /// The global game controller. It contains the game model and executes the schedule.
@@ -14,6 +14,10 @@ namespace RPGM.Gameplay
         //over the shared reference, rather than create a new instance.
         //To preserve this behaviour, this script must be deserialized last.
         public GameModel model;
+        private void Awake()
+        {
+            Schedule.SetModel<GameModel>(model);
+        }
 
         protected virtual void OnEnable()
         {

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using RPGM.Gameplay;
+using KnightAge.Gameplay;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace RPGM.EditorExtensions
+namespace KnightAge.EditorExtensions
 {
     [CustomEditor(typeof(StoryItem))]
     public class StoryItemEditor : Editor
