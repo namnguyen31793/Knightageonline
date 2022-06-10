@@ -33,14 +33,15 @@ namespace KnightAge
             model.poolControl.CreatePool(EnemyPrefab, MaxStackEnemy);
         }
 
-        public async void UpdateFrame(float deltaTime) {
-            if (CampId <= 0)
+        public void UpdateFrame(float deltaTime) {
+            if (CampId <= 0 )
                 return;
             //add time frame for Enemy
-            foreach (var enemy in listEnemy)
-            {
-                await Task.Run(() => enemy.CheckTime(deltaTime));
-            }
+            if( listEnemy.Count > 0)
+                for (int i = listEnemy.Count -1; i >= 0; i--)
+                {
+                    listEnemy[i].CheckTime(deltaTime);
+                }
             //check create Enemy
             if (listEnemy.Count < MaxStackEnemy){
                 int random = RandomHelper.NextInt(10) - 8;
@@ -57,7 +58,6 @@ namespace KnightAge
             enemyNew.transform.localScale = Vector3.one;
             enemyNew.active = true;
             Vector3 random = new Vector3(((float)(RandomHelper.NextInt(81) - 80) / 40) * SizeCampSpawn, ((float)(RandomHelper.NextInt(81) - 80) / 40) * SizeCampSpawn);
-            Debug.Log(random);
             enemyNew.transform.position = this.transform.position + random;
             this.listEnemy.Add(enemyNew.GetComponent<Enemy>());
             enemyNew.GetComponent<Enemy>().Init(this.CampId);

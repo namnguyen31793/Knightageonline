@@ -32,12 +32,13 @@ namespace KnightAge.UI
             }
         }
 
-        void FixedUpdate()
+        void Update()
         {
             switch (state)
             {
                 case State.CharacterControl:
                     CharacterControl();
+                    CheckRaycash();
                     break;
                 case State.DialogControl:
                     DialogControl();
@@ -64,6 +65,29 @@ namespace KnightAge.UI
             else
                 _vectorMove = new Vector3( 0, joystick.Vertical);
             model.player.nextMoveCommand = _vectorMove * stepSize;
+        }
+
+        void CheckRaycash(){
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
+                if(hit.collider != null && hit.collider.gameObject.tag == "Enemy")
+                {
+                    // actack
+                    model.player.SelectObject(hit.collider.transform);
+                    //enemy actack
+                    var enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                    if(enemy == null)
+                        return;
+                    enemy.PlayerActack(model.player.transform);
+                }
+                if(hit.collider != null && hit.collider.gameObject.tag == "NPC")
+                {
+                    // actack
+                    model.player.SelectObject(hit.collider.transform);
+                }
+            }
         }
     }
 }

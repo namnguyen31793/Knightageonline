@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1fd460114b83f4d86aecbf10b446b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.1
+  _speed: 1
   _rangleActack: 1
   _typeActack: 0
   _status: 0
+  animator: {fileID: 5559286983441674144}
   CampId: 0
 --- !u!222 &9151467670690389244
 CanvasRenderer:
