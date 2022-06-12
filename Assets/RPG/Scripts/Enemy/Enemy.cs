@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KnightAge.Model;
 
 namespace KnightAge
 {
@@ -14,6 +15,9 @@ namespace KnightAge
         private ENEMY_TYPE_ACTACK _typeActack = ENEMY_TYPE_ACTACK.MELEE;
         [SerializeField]
         private ENEMY_STATUS _status = ENEMY_STATUS.IDLE;
+        
+        [SerializeField]
+        InfoActack info;
         public Animator animator;
         private Transform target;
         [SerializeField]

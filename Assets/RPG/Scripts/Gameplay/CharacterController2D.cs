@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using KnightAge.Gameplay;
 using UnityEngine;
 using UnityEngine.U2D;
+using KnightAge.Model;
 
 namespace KnightAge.Gameplay
 {
@@ -22,9 +23,13 @@ namespace KnightAge.Gameplay
         SpriteRenderer spriteRenderer;
         PixelPerfectCamera pixelPerfectCamera;
 
+        [SerializeField]
+        InfoActack info;
+        private long _currentTimeActack = 0;
+
         enum State
         {
-            Idle, Moving, AutoMove
+            Idle, Moving, AutoMove, Attack
         }
 
         State state = State.Idle;
@@ -88,6 +93,9 @@ namespace KnightAge.Gameplay
                 case State.AutoMove:
                     AutoMoveState();
                     break;
+                case State.Attack:
+                    Actack();
+                    break;
             }
         }
 
@@ -134,8 +142,8 @@ namespace KnightAge.Gameplay
             rigidbody2D.velocity = Vector2.SmoothDamp(rigidbody2D.velocity, _vectorMove * speed, ref currentVelocity, acceleration, speed);
             spriteRenderer.flipX = rigidbody2D.velocity.x >= 0 ? true : false;
 
-            if(Vector3.Distance(this.transform.position, this.targetObject.position) < 1f){
-                state = State.Moving;
+            if(Vector3.Distance(this.transform.position, this.targetObject.position) <= info.RangleActack){
+                state = State.Attack;
             }
         }
 
@@ -145,6 +153,18 @@ namespace KnightAge.Gameplay
 
         Vector3 CalculateMidVector(Vector3 start, Vector3 end){
             return start - end;
+        }
+
+        void Actack(){
+            var nbf = (int)(DateTime.UtcNow.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
+            if(_currentTimeActack + info.AttackSpeed >= nbf){
+                //call atack enemy
+                _currentTimeActack = nbf;
+            }
+
+            if(Vector3.Distance(this.transform.position, this.targetObject.position) > info.RangleActack){
+                state = State.AutoMove;
+            }
         }
     }
 }
