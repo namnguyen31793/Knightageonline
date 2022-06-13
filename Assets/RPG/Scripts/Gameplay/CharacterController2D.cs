@@ -150,6 +150,7 @@ namespace KnightAge.Gameplay
             if (this.typeAutoMove == TYPE_PLAYER_SELECT.ENEMY)
             {
                 if (Vector3.Distance(this.transform.position, this.targetObject.position) <= info.RangleActack){
+                    Debug.Log("Distance enemy");
                     state = State.Attack;
                 }
             }
@@ -174,7 +175,7 @@ namespace KnightAge.Gameplay
         void CheckActack()
         {
             int nbf = UtilsGame.GetTimeNbf();
-            if (_currentTimeActack + info.AttackSpeed >= nbf)
+            if (_currentTimeActack + info.AttackSpeed <= nbf)
             {
                 //call atack enemy
                 Actack();

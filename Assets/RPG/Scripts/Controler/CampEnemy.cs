@@ -73,9 +73,9 @@ namespace KnightAge
         public void KillEnemy(Enemy enemyView)
         {
             Debug.Log("KillEnemy");
-            model.poolControl.Remove(enemyView.gameObject);
             enemyView.Dispose();
             this.listEnemy.Remove(enemyView);
+            model.poolControl.Remove(enemyView.gameObject);
         }
 
         public Transform GetTransformEnemy(int EnemyId) {

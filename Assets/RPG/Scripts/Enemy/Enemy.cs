@@ -149,8 +149,7 @@ namespace KnightAge
         {
             if (animator)
             {
-                animator.SetInteger("WalkX", direction.x < 0 ? -1 : direction.x > 0 ? 1 : 0);
-                animator.SetInteger("WalkY", direction.y < 0 ? 1 : direction.y > 0 ? -1 : 0);
+                
             }
         }
 
