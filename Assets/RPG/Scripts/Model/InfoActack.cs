@@ -12,6 +12,13 @@ namespace KnightAge.Model
         public float AttackSpeed;
         public float RangleActack;
         public GameObject effectActack;
+        public TYPE_ACTACK typeActack;
+    }
 
+    public enum TYPE_ACTACK
+    {
+        RANGLE,
+        MAGIC,
+        MEELE
     }
 }

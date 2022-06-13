@@ -20,13 +20,19 @@ namespace KnightAge
         InfoActack info;
         public Animator animator;
         private Transform target;
+
         [SerializeField]
-        private int CampId;
+        private int _campId ;
+        public int CamId { get { return _campId; } }
+        [SerializeField]
+        private int _enemyId;
+        public int EnemyId { get { return _enemyId; } }
 
         private Vector3 _startPos;
 
-        public void Init(int CampId) {
-            this.CampId = CampId;
+        public void Init(int CampId, int EnemyId) {
+            this._campId = CampId;
+            this._enemyId = EnemyId;
             this._startPos = this.transform.position;
         }
 
@@ -131,6 +137,10 @@ namespace KnightAge
             this.target = null;
         }
 
+        public virtual int PlayerHit(int damage) {
+            this.info.Heal -= damage;
+            return this.info.Heal;
+        }
 
         public virtual void Dispose() {
             target = null;

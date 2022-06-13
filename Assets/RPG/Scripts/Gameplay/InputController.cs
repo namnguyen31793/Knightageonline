@@ -75,7 +75,7 @@ namespace KnightAge.UI
                 if(hit.collider != null && hit.collider.gameObject.tag == "Enemy")
                 {
                     // actack
-                    model.player.SelectObject(hit.collider.transform);
+                    model.player.SelectObject(hit.collider.transform, TYPE_PLAYER_SELECT.ENEMY);
                     //enemy actack
                     var enemy = hit.collider.gameObject.GetComponent<Enemy>();
                     if(enemy == null)
@@ -85,7 +85,7 @@ namespace KnightAge.UI
                 if(hit.collider != null && hit.collider.gameObject.tag == "NPC")
                 {
                     // actack
-                    model.player.SelectObject(hit.collider.transform);
+                    model.player.SelectObject(hit.collider.transform, TYPE_PLAYER_SELECT.NPC);
                 }
             }
         }

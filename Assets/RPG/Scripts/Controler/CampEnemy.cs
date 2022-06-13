@@ -1,7 +1,9 @@
 using KnightAge.Core;
 using KnightAge.Gameplay;
+using KnightAge.Helper;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -10,7 +12,8 @@ namespace KnightAge
     public class CampEnemy : MonoBehaviour
     {
         [SerializeField]
-        private int CampId;
+        private int _campId;
+        public int CampId { get { return _campId; } }
         [SerializeField]
         private List<Enemy> listEnemy = new List<Enemy>();
         [SerializeField]
@@ -28,7 +31,7 @@ namespace KnightAge
         /// </summary>
         public void Init(int CampId){
             this.Dispose();
-            this.CampId = CampId;
+            this._campId = CampId;
             //create Pool
             model.poolControl.CreatePool(EnemyPrefab, MaxStackEnemy);
         }
@@ -60,7 +63,8 @@ namespace KnightAge
             Vector3 random = new Vector3(((float)(RandomHelper.NextInt(81) - 80) / 40) * SizeCampSpawn, ((float)(RandomHelper.NextInt(81) - 80) / 40) * SizeCampSpawn);
             enemyNew.transform.position = this.transform.position + random;
             this.listEnemy.Add(enemyNew.GetComponent<Enemy>());
-            enemyNew.GetComponent<Enemy>().Init(this.CampId);
+            //fake id enemy = curent time
+            enemyNew.GetComponent<Enemy>().Init(this.CampId, UtilsGame.GetTimeNbf());
         }
 
         /// <summary>
@@ -68,9 +72,28 @@ namespace KnightAge
         /// </summary>
         public void KillEnemy(Enemy enemyView)
         {
+            Debug.Log("KillEnemy");
             model.poolControl.Remove(enemyView.gameObject);
             enemyView.Dispose();
             this.listEnemy.Remove(enemyView);
+        }
+
+        public Transform GetTransformEnemy(int EnemyId) {
+            return listEnemy.FirstOrDefault(x => x.EnemyId == EnemyId).transform;
+        }
+
+        public void ActackEnemy(int EnemyId, int damage)
+        {
+            var enemy = listEnemy.FirstOrDefault(x => x.EnemyId == EnemyId);
+            if (enemy != null) {
+                var heal = enemy.PlayerHit(damage);
+                Debug.Log("ActackEnemy "+ heal);
+                if (heal < 0) {
+                    //clear enemy
+                    KillEnemy(enemy);
+                    //add item
+                }
+            }
         }
 
         public void Dispose()
@@ -86,7 +109,7 @@ namespace KnightAge
                 }
             }
             listEnemy = new List<Enemy>();
-            CampId = 0;
+            _campId = 0;
         }
     }
 }

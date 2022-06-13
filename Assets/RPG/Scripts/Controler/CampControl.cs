@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -32,6 +33,10 @@ namespace KnightAge
             foreach (var camp in listCamp) {
                  camp.UpdateFrame(time);
             }
+        }
+
+        public CampEnemy GetCampById(int campId) {
+            return listCamp.FirstOrDefault(x => x.CampId == campId);
         }
 
         /// <summary>

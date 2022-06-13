@@ -5,6 +5,8 @@ using KnightAge.Gameplay;
 using UnityEngine;
 using UnityEngine.U2D;
 using KnightAge.Model;
+using KnightAge.Helper;
+using KnightAge.Core;
 
 namespace KnightAge.Gameplay
 {
@@ -41,6 +43,8 @@ namespace KnightAge.Gameplay
         float velocity;
 
         Transform targetObject;
+        TYPE_PLAYER_SELECT typeAutoMove = TYPE_PLAYER_SELECT.NONE;
+        GameModel model = Schedule.GetModel<GameModel>();
 
         void IdleState()
         {
@@ -94,7 +98,7 @@ namespace KnightAge.Gameplay
                     AutoMoveState();
                     break;
                 case State.Attack:
-                    Actack();
+                    CheckActack();
                     break;
             }
         }
@@ -107,8 +111,9 @@ namespace KnightAge.Gameplay
             }
         }
 
-        public void SelectObject(Transform objSelect){
+        public void SelectObject(Transform objSelect, TYPE_PLAYER_SELECT typeAutoMove){
             this.targetObject = objSelect;
+            this.typeAutoMove = typeAutoMove;
             state = State.AutoMove;
         }
 
@@ -142,8 +147,19 @@ namespace KnightAge.Gameplay
             rigidbody2D.velocity = Vector2.SmoothDamp(rigidbody2D.velocity, _vectorMove * speed, ref currentVelocity, acceleration, speed);
             spriteRenderer.flipX = rigidbody2D.velocity.x >= 0 ? true : false;
 
-            if(Vector3.Distance(this.transform.position, this.targetObject.position) <= info.RangleActack){
-                state = State.Attack;
+            if (this.typeAutoMove == TYPE_PLAYER_SELECT.ENEMY)
+            {
+                if (Vector3.Distance(this.transform.position, this.targetObject.position) <= info.RangleActack){
+                    state = State.Attack;
+                }
+            }
+            else if (this.typeAutoMove == TYPE_PLAYER_SELECT.NPC)
+            {
+                if (Vector3.Distance(this.transform.position, this.targetObject.position) < 1)
+                {
+                    state = State.AutoMove;
+                    this.typeAutoMove = TYPE_PLAYER_SELECT.NONE;
+                }
             }
         }
 
@@ -155,16 +171,53 @@ namespace KnightAge.Gameplay
             return start - end;
         }
 
-        void Actack(){
-            var nbf = (int)(DateTime.UtcNow.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
-            if(_currentTimeActack + info.AttackSpeed >= nbf){
+        void CheckActack()
+        {
+            int nbf = UtilsGame.GetTimeNbf();
+            if (_currentTimeActack + info.AttackSpeed >= nbf)
+            {
                 //call atack enemy
+                Actack();
                 _currentTimeActack = nbf;
             }
 
-            if(Vector3.Distance(this.transform.position, this.targetObject.position) > info.RangleActack){
+            if (Vector3.Distance(this.transform.position, this.targetObject.position) > info.RangleActack)
+            {
                 state = State.AutoMove;
             }
         }
+        private void Actack() {
+            Debug.Log("actack");
+            if (this.targetObject == null) {
+                state = State.AutoMove;
+                return;
+            }
+            var enemy = this.targetObject.GetComponent<Enemy>();
+            if (enemy == null) {
+                state = State.AutoMove;
+                return;
+            }
+            int campId = enemy.CamId;
+            int enemyId = enemy.EnemyId;
+            if (this.info.typeActack == TYPE_ACTACK.MEELE){
+                var campControl = model.campEnemyControl.GetCampById(campId);
+                if (campControl != null) {
+                    campControl.ActackEnemy(enemyId, this.info.Damage);
+                }
+            }
+            else if(this.info.typeActack == TYPE_ACTACK.RANGLE){
+                //create bullet
+            }
+            else if(this.info.typeActack == TYPE_ACTACK.MAGIC){
+                //create magic
+            }
+        }
+    }
+
+    public enum TYPE_PLAYER_SELECT
+    {
+        NONE,
+        NPC,
+        ENEMY
     }
 }

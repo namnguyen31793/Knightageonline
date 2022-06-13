@@ -56,8 +56,16 @@ MonoBehaviour:
   _rangleActack: 1
   _typeActack: 0
   _status: 0
+  info:
+    Heal: 15
+    Damage: 1
+    AttackSpeed: 1
+    RangleActack: 2
+    effectActack: {fileID: 0}
+    typeActack: 0
   animator: {fileID: 5559286983441674144}
-  CampId: 0
+  _campId: 0
+  _enemyId: 0
 --- !u!222 &9151467670690389244
 CanvasRenderer:
   m_ObjectHideFlags: 0
