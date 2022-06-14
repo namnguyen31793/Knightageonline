@@ -76,13 +76,17 @@ namespace KnightAge
             enemyView.Dispose();
             this.listEnemy.Remove(enemyView);
             model.poolControl.Remove(enemyView.gameObject);
+            //reset player
+            model.player.RemoveSelectObj();
+            //call UI item drop
+
         }
 
         public Transform GetTransformEnemy(int EnemyId) {
             return listEnemy.FirstOrDefault(x => x.EnemyId == EnemyId).transform;
         }
 
-        public void ActackEnemy(int EnemyId, int damage)
+        public void ActackEnemy(double EnemyId, int damage)
         {
             var enemy = listEnemy.FirstOrDefault(x => x.EnemyId == EnemyId);
             if (enemy != null) {

@@ -59,12 +59,23 @@ namespace KnightAge.UI
 
         void CharacterControl()
         {
-            var _vectorMove = Vector3.zero;
-            if(Math.Abs(joystick.Horizontal) >= Math.Abs(joystick.Vertical))
-                _vectorMove = new Vector3(joystick.Horizontal, 0);
-            else
-                _vectorMove = new Vector3( 0, joystick.Vertical);
-            model.player.nextMoveCommand = _vectorMove * stepSize;
+            
+            if (Input.GetKey(KeyCode.W))
+                model.player.nextMoveCommand = Vector3.up * stepSize;
+            else if (Input.GetKey(KeyCode.S))
+                model.player.nextMoveCommand = Vector3.down * stepSize;
+            else if (Input.GetKey(KeyCode.A))
+                model.player.nextMoveCommand = Vector3.left * stepSize;
+            else if (Input.GetKey(KeyCode.D))
+                model.player.nextMoveCommand = Vector3.right * stepSize;
+            else {
+                var _vectorMove = Vector3.zero;
+                if(Math.Abs(joystick.Horizontal) >= Math.Abs(joystick.Vertical))
+                    _vectorMove = new Vector3(joystick.Horizontal, 0);
+                else
+                    _vectorMove = new Vector3( 0, joystick.Vertical);
+                model.player.nextMoveCommand = _vectorMove * stepSize;
+            }
         }
 
         void CheckRaycash(){

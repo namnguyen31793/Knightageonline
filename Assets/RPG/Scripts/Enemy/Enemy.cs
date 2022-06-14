@@ -25,12 +25,12 @@ namespace KnightAge
         private int _campId ;
         public int CamId { get { return _campId; } }
         [SerializeField]
-        private int _enemyId;
-        public int EnemyId { get { return _enemyId; } }
+        private double _enemyId;
+        public double EnemyId { get { return _enemyId; } }
 
         private Vector3 _startPos;
 
-        public void Init(int CampId, int EnemyId) {
+        public void Init(int CampId, double EnemyId) {
             this._campId = CampId;
             this._enemyId = EnemyId;
             this._startPos = this.transform.position;

@@ -27,7 +27,7 @@ namespace KnightAge.Gameplay
 
         [SerializeField]
         InfoActack info;
-        private long _currentTimeActack = 0;
+        private double _currentTimeActack = 0;
 
         enum State
         {
@@ -117,6 +117,11 @@ namespace KnightAge.Gameplay
             state = State.AutoMove;
         }
 
+        public void RemoveSelectObj(){
+            this.ResetTurn();
+            //clear effect
+        }
+
         void AutoMoveState()
         {
             if (nextMoveCommand != Vector3.zero){
@@ -150,7 +155,6 @@ namespace KnightAge.Gameplay
             if (this.typeAutoMove == TYPE_PLAYER_SELECT.ENEMY)
             {
                 if (Vector3.Distance(this.transform.position, this.targetObject.position) <= info.RangleActack){
-                    Debug.Log("Distance enemy");
                     state = State.Attack;
                 }
             }
@@ -174,32 +178,34 @@ namespace KnightAge.Gameplay
 
         void CheckActack()
         {
-            int nbf = UtilsGame.GetTimeNbf();
-            if (_currentTimeActack + info.AttackSpeed <= nbf)
-            {
+            if(this.targetObject == null){
+                this.ResetTurn();
+                return;
+            }
+            var nbf = UtilsGame.GetTimeNbf();
+            if ((_currentTimeActack+info.AttackSpeed) <= nbf){
+                _currentTimeActack = nbf;
                 //call atack enemy
                 Actack();
-                _currentTimeActack = nbf;
+                return;
             }
 
-            if (Vector3.Distance(this.transform.position, this.targetObject.position) > info.RangleActack)
-            {
+            if (Vector3.Distance(this.transform.position, this.targetObject.position) > info.RangleActack){
                 state = State.AutoMove;
             }
         }
         private void Actack() {
-            Debug.Log("actack");
             if (this.targetObject == null) {
-                state = State.AutoMove;
+                this.ResetTurn();
                 return;
             }
             var enemy = this.targetObject.GetComponent<Enemy>();
             if (enemy == null) {
-                state = State.AutoMove;
+                this.ResetTurn();
                 return;
             }
             int campId = enemy.CamId;
-            int enemyId = enemy.EnemyId;
+            double enemyId = enemy.EnemyId;
             if (this.info.typeActack == TYPE_ACTACK.MEELE){
                 var campControl = model.campEnemyControl.GetCampById(campId);
                 if (campControl != null) {
@@ -212,6 +218,12 @@ namespace KnightAge.Gameplay
             else if(this.info.typeActack == TYPE_ACTACK.MAGIC){
                 //create magic
             }
+        }
+
+        private void ResetTurn(){
+            this.targetObject = null;
+            this.typeAutoMove = TYPE_PLAYER_SELECT.NONE;
+            state = State.Moving;
         }
     }
 

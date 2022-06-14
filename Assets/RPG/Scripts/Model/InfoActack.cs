@@ -9,7 +9,7 @@ namespace KnightAge.Model
     {
         public int Heal;
         public int Damage;
-        public float AttackSpeed;
+        public int AttackSpeed;//milisecend
         public float RangleActack;
         public GameObject effectActack;
         public TYPE_ACTACK typeActack;
