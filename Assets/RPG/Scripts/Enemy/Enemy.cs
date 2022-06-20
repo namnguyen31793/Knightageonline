@@ -27,6 +27,9 @@ namespace KnightAge
         [SerializeField]
         private double _enemyId;
         public double EnemyId { get { return _enemyId; } }
+        [SerializeField]
+        private double _enemyHeal;
+        public double EnemyHeal { get { return _enemyHeal; } }
 
         private Vector3 _startPos;
 
@@ -34,6 +37,7 @@ namespace KnightAge
             this._campId = CampId;
             this._enemyId = EnemyId;
             this._startPos = this.transform.position;
+            this._enemyHeal = this.info.Heal;
         }
 
         /// <summary>
@@ -137,9 +141,16 @@ namespace KnightAge
             this.target = null;
         }
 
-        public virtual int PlayerHit(int damage) {
-            this.info.Heal -= damage;
-            return this.info.Heal;
+        public virtual void PlayerHit(int damage) {
+            this._enemyHeal -= damage;
+        }
+
+        public virtual float GetHeal() {
+            return (float)(this._enemyHeal/this.info.Heal);
+        }
+
+        public string GetName() {
+            return this.info.NameEnemy;
         }
 
         public virtual void Dispose() {

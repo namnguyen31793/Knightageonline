@@ -132,6 +132,7 @@ namespace KnightAge.Gameplay
                 UpdateAnimator(nextMoveCommand);
                 nextMoveCommand = Vector3.zero;
                 state = State.Moving;
+                this.ResetTurn();
             }
             var _vectorMove = Vector3.zero;
             var direction = CalculateMidVector(this.targetObject.position, this.transform.position);
@@ -224,6 +225,7 @@ namespace KnightAge.Gameplay
             this.targetObject = null;
             this.typeAutoMove = TYPE_PLAYER_SELECT.NONE;
             state = State.Moving;
+            model.uiCanvasControl.HideUiEnemy();
         }
     }
 

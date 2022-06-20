@@ -5,6 +5,7 @@ using KnightAge;
 using KnightAge.Core;
 using KnightAge.Gameplay;
 using KnightAge.UI;
+using KnightAge.UICanvas;
 using UnityEngine;
 
 namespace KnightAge.Gameplay
@@ -22,6 +23,7 @@ namespace KnightAge.Gameplay
         public MusicController musicController;
         public CampControl campEnemyControl;
         public PoolControl poolControl;
+        public UICanvasControl uiCanvasControl;
 
         Dictionary<GameObject, HashSet<string>> conversations = new Dictionary<GameObject, HashSet<string>>();
 

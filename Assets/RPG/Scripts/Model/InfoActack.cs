@@ -7,6 +7,7 @@ namespace KnightAge.Model
     [System.Serializable] 
     public class InfoActack
     {
+        public string NameEnemy;
         public int Heal;
         public int Damage;
         public int AttackSpeed;//milisecend

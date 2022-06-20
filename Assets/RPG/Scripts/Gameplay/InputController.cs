@@ -85,13 +85,14 @@ namespace KnightAge.UI
                 RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
                 if(hit.collider != null && hit.collider.gameObject.tag == "Enemy")
                 {
-                    // actack
-                    model.player.SelectObject(hit.collider.transform, TYPE_PLAYER_SELECT.ENEMY);
                     //enemy actack
                     var enemy = hit.collider.gameObject.GetComponent<Enemy>();
                     if(enemy == null)
                         return;
+                    // actack
+                    model.player.SelectObject(hit.collider.transform, TYPE_PLAYER_SELECT.ENEMY);
                     enemy.PlayerActack(model.player.transform);
+                    model.uiCanvasControl.ShowUIEnemy(enemy.GetName(), 1);
                 }
                 if(hit.collider != null && hit.collider.gameObject.tag == "NPC")
                 {

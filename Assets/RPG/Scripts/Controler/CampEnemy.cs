@@ -78,8 +78,8 @@ namespace KnightAge
             model.poolControl.Remove(enemyView.gameObject);
             //reset player
             model.player.RemoveSelectObj();
-            //call UI item drop
-
+            //call UI heal
+            model.uiCanvasControl.HideUiEnemy();
         }
 
         public Transform GetTransformEnemy(int EnemyId) {
@@ -90,7 +90,9 @@ namespace KnightAge
         {
             var enemy = listEnemy.FirstOrDefault(x => x.EnemyId == EnemyId);
             if (enemy != null) {
-                var heal = enemy.PlayerHit(damage);
+                enemy.PlayerHit(damage);
+                var heal = enemy.GetHeal();
+                model.uiCanvasControl.UpdateHealEnemy(heal);
                 Debug.Log("ActackEnemy "+ heal);
                 if (heal < 0) {
                     //clear enemy
